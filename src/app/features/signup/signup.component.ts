@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl,Validators  } from '@angular/forms';
+import {UserdataService} from '../../shared/services/userdata.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -7,18 +9,34 @@ import { FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  myForm: FormGroup;
-  constructor() {
-    this.myForm = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl(''),
-      confirmpassword: new FormControl('')
-      // other form controls
+  myFormSignup: FormGroup;
+  constructor(private userdataService:UserdataService,private router: Router) {
+    
+    this.myFormSignup = new FormGroup({
+      username: new FormControl('', Validators.required),
+      password: new FormControl('', Validators.required),
+      confirmpassword: new FormControl('', Validators.required),
     });
-    console.log(22);
+    
    }
 
   ngOnInit(): void {
   }
-
+  onSubmitSignup()
+   { 
+      if (this.myFormSignup.invalid)
+      {
+        // Handle invalid form
+        return;
+      }else{
+        const signUpData = this.myFormSignup.value;
+        this.userdataService.saveUsers(signUpData);
+        this.router.navigate(['/login']);
+        alert('Save successful! Signup ');
+      } 
+     
+   
+   
+    }
+ 
 }

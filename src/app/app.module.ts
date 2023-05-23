@@ -6,10 +6,11 @@ import { LoginComponent } from './features/login/login.component';
 import { SignupComponent } from './features/signup/signup.component';
 import { AboutComponent } from './features/about/about.component';
 import { RouterModule } from '@angular/router';
-import {CoreModule} from '../app/core/core.module';
+import { CoreModule} from '../app/core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './features/home/home.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RouterModule,
     CoreModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
