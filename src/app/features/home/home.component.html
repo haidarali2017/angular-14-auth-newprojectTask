@@ -1,1 +1,21 @@
-<p>home works!</p>
+ 
+<main class="container mx-auto my-8 px-4">
+    <div class="flex flex-wrap -mx-4">
+      <div   *ngFor="let value of post$ | async" class="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 xl:w-1/5 px-4 mb-8">
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            
+                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"> {{value.title | slice:0:25 }}</h5>
+                <p class="font-normal text-gray-700 dark:text-gray-400">{{value.body | slice:0:100}}  </p>
+             
+            <a   style="color:blueviolet" > More Details ...</a>
+        </div>
+      </div>
+
+     
+    </div>
+   
+
+
+  </main>
+
+ 

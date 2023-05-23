@@ -1,5 +1,6 @@
 import { Injectable,EventEmitter } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -7,12 +8,11 @@ import {HttpClient} from '@angular/common/http';
 })
 export class LoginService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private router: Router) { }
 
   public userName: any;
   setUserName(name: any) {
     this.userName = name;
-    // console.log('login service',name);
   }
   getUserName(): any {
     return this.userName;
@@ -22,6 +22,11 @@ export class LoginService {
   public emitUserLoggedIn(userData: any) {
     this.userLoggedIn.emit(userData);
  
+  }
+
+  logout(): void {
+    this.router.navigate(['/login']);
+    window.location.reload();
   }
 
 }

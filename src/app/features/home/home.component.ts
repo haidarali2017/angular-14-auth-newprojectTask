@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import {invokePostAPI} from '../store/post.action';
+import {selectPost} from '../store/post.selector';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private store: Store) { }
+  post$=this.store.pipe(select(selectPost));
 
   ngOnInit(): void {
+    this.store.dispatch(invokePostAPI());
+    // console.log(post$);
   }
 
 }
